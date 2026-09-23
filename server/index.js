@@ -29,10 +29,13 @@ app.use('/api/recommends', recommendRouter);
 
 app.get('/logo', (req,res) => res.sendFile(path.join(__dirname,"./Logo.png")));
 
+app.use('/api', (req, res) => {
+  res.status(404).json({ error: 'API route not found' });
+});
+
 // Requests meant for the API will be sent along to the router.
 // For all other requests, send back the index.html file in the dist folder.
-app.get('*', (req, res, next) => {
-  if (req.originalUrl.startsWith('/api')) return next();
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
