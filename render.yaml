@@ -2,7 +2,7 @@ services:
   - type: web
     name: pear
     env: node
-    buildCommand: npm run build:frontend && cd server && npm install && npm run migrate
+    buildCommand: npm --prefix frontend install --include=dev && npm --prefix frontend run build && npm --prefix server install && npm --prefix server run migrate
     startCommand: npm start
     envVars:
       - key: NODE_ENV
