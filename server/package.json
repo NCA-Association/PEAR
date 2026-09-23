@@ -39,5 +39,8 @@
     "eslint-plugin-react-refresh": "^0.3.4",
     "nodemon": "^3.1.0",
     "sass": "^1.77.2"
+  },
+  "allowScripts": {
+    "bcrypt@5.1.0": true
   }
 }
