@@ -36,14 +36,6 @@ body {
   margin: 0;
 }
 
-input, label {
-  display: block;
-}
-
-input {
-  margin-bottom: 1rem;
-}
-
 header {
   display: flex;
   justify-content: space-between;
@@ -75,4 +67,35 @@ nav a {
   color: #EEBC32;
   font-weight: bold;
   font-style: italic;
+}
+
+@media (max-width: 720px) {
+  header {
+    align-items: center;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.85rem;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 0.9rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+    line-height: 1.25rem;
+  }
+}
+
+@media (max-width: 420px) {
+  nav ul {
+    align-items: center;
+    flex-direction: column;
+  }
 }/*# sourceMappingURL=SiteHeadingAndNav.css.map */

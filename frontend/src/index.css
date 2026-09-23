@@ -3,6 +3,19 @@
 * {
   margin:0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  background-color: #c1d7c3;
+}
+
+main {
+  min-height: calc(100vh - 91px);
+  background-color: #c1d7c3;
 }
 
 .abt-box{

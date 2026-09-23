@@ -28,6 +28,7 @@
 #info {
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 #info #tp {
   display: flex;
@@ -80,6 +81,7 @@
   flex-direction: row;
   gap: 1rem;
   width: 90%;
+  min-width: 0;
 }
 #info #tp #p2 #recommend-wrapper {
   display: flex;
@@ -103,6 +105,9 @@
   padding: 13px;
   background-color: rgba(124, 124, 122, 0.09);
   border-radius: 10px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .prgmInfoSameLine h4 {
   padding: 0 8px 0 15px;
@@ -112,6 +117,8 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 #comments ul {
@@ -156,6 +163,8 @@ li {
 }
 #comments #make-comment-wrapper form input {
   margin: 0;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 #comments #make-comment-wrapper #comment-input {
   display: flex;
@@ -181,6 +190,8 @@ li {
   background-color: rgba(124, 124, 122, 0.09);
   border-radius: 10px;
   gap: 5px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 #comments #all-comments .single-comment h4 {
   display: flex;
@@ -208,4 +219,103 @@ li {
   max-width: -moz-fit-content;
   max-width: fit-content;
   padding: 2px;
+}
+
+@media (max-width: 900px) {
+  #program-title {
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
+    margin-left: 0;
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  #info #tp {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #info #tp #p1 {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  #info #tp #p1 #pr-thumbnail {
+    box-sizing: border-box;
+    height: auto;
+    max-height: none;
+    max-width: 40rem;
+    width: calc(100% - 2rem);
+  }
+
+  #info #tp #p2 {
+    box-sizing: border-box;
+    margin: 1rem;
+    padding: 1.25rem;
+    width: calc(100% - 2rem);
+  }
+
+  #info #tp #p2 #program-info {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  #info #tp #p2 #recommend-wrapper #radios {
+    gap: 1rem;
+  }
+
+  .prgmInfoSameLine {
+    overflow-wrap: anywhere;
+  }
+
+  #comments {
+    margin: 1rem;
+    padding: 1.25rem;
+  }
+
+  #comments #make-comment-wrapper,
+  #comments #make-comment-wrapper form,
+  #comments #make-comment-wrapper #comment-input {
+    width: 100%;
+  }
+
+  #comments #make-comment-wrapper #comment-input {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #comments #make-comment-wrapper #comment-input input,
+  #comments #make-comment-wrapper #comment-input button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  #info #tp {
+    gap: 0;
+  }
+
+  #info #tp #p1 #pr-thumbnail {
+    margin: 0.75rem 0;
+    width: calc(100% - 1rem);
+  }
+
+  #info #tp #p2 {
+    margin: 0.5rem;
+    padding: 1rem;
+    width: calc(100% - 1rem);
+  }
+
+  .prgmInfoSameLine {
+    padding: 0.75rem;
+  }
+
+  #comments {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+
+  #comments #all-comments .single-comment h4 {
+    flex-direction: column;
+  }
 }/*# sourceMappingURL=IndividualProgramPage.css.map */

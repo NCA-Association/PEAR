@@ -10,9 +10,18 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 35vh;
+  width: min(35rem, calc(100vw - 2rem));
+  max-width: 100%;
   gap: 1rem;
-  margin: 1rem auto;
+  margin: 2rem auto;
+}
+
+.edit-account-wrapper form,
+.edit-account-wrapper .field,
+.edit-account-wrapper .control,
+.edit-account-wrapper input,
+.edit-account-wrapper button {
+  width: 100%;
 }
 
 .container {
@@ -20,6 +29,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 #logout {
@@ -28,4 +38,11 @@
   justify-content: center;
   margin-top: 1rem;
   padding: 6px;
+}
+
+@media (max-width: 520px) {
+  .edit-account-wrapper {
+    margin: 1rem auto;
+    padding: 1rem;
+  }
 }/*# sourceMappingURL=EditAccount.css.map */
