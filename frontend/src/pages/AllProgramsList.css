@@ -96,7 +96,8 @@
 }
 
 .opProgram {
-  width: 100vw;
+  box-sizing: border-box;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -108,8 +109,10 @@
 }
 
 .opProgramImgDiv img {
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .opProgramImgDiv div {
@@ -117,7 +120,8 @@
   align-items: center;
   flex-direction: column;
   background-color: white;
-  width: 450px;
+  max-width: 450px;
+  width: 90%;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -195,4 +199,40 @@
 
 #edit-program-button {
   padding: 4.2px;
+}
+
+@media (max-width: 820px) {
+  .opProgram {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .opProgramImgDiv {
+    margin: 10px 0;
+    order: 1;
+  }
+
+  .opProgramDescDiv {
+    order: 2;
+  }
+
+  .opProgramDescDiv p {
+    width: 100%;
+  }
+
+  .opProgramDescDiv h2 {
+    font-size: clamp(1.35rem, 7vw, 1.75rem);
+    text-align: center;
+  }
+
+  #opporunities-header {
+    font-size: clamp(1.8rem, 9vw, 2.6rem);
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  .add-program-button .add-programs {
+    margin-top: 40px;
+  }
 }/*# sourceMappingURL=AllProgramsList.css.map */

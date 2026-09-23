@@ -8,12 +8,13 @@ import "./SignUp.css";
 
 export default function SignUpPage() {
   const navigate = useNavigate();
-  const { currentUser, setCurrentUser, setIsOrganization } = useContext(CurrentUserContext);
+  const { currentUser, setCurrentUser, setIsOrganization, isAuthLoading } = useContext(CurrentUserContext);
   const [errorText, setErrorText] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isOrgSignUp, setIsOrgSignUp] = useState(false);
 
+  if (isAuthLoading) return null;
   if (currentUser) return <Navigate to="/" />;
 
   const handleSubmit = async (event) => {

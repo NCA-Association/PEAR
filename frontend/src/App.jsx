@@ -25,6 +25,7 @@ import AboutPage from "./pages/About.jsx";
 //Component Imports
 import UserContext from "./contexts/current-user-context";
 import SiteHeadingAndNav from "./components/SiteHeadingAndNav";
+import Footer from "./components/Footer.jsx";
 import { getOrganization } from "./adapters/organization-adapter.js";
 import { getUser } from "./adapters/user-adapter.js";
 import MakeComment from "./components/MakeComment.jsx";
@@ -74,9 +75,9 @@ export default function App() {
           /> */}
           {/* Programs */}
           <Route path="/opportunities" element={<AllProgramsPage />} />
-          <Route path="/opportunities/:id" element={<IndividualProgramPage />} />2
-          <Route path="/opportunities/:id/edit" element={<EditProgramPage />} />2
-          <Route path="/opportunities/add" element={<ProgramsAddPage />} />2
+          <Route path="/opportunities/:id" element={<IndividualProgramPage />} />
+          <Route path="/opportunities/:id/edit" element={<EditProgramPage />} />
+          <Route path="/opportunities/add" element={<ProgramsAddPage />} />
           {/* Misc */}
           <Route path="/about" element={<AboutPage />} />
           <Route path="/access-denied" element={<AccessDeniedPage />} />
@@ -88,6 +89,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
+      <Footer />
     </>
   );
 }

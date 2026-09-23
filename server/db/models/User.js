@@ -63,20 +63,24 @@ class User {
       return null;
     }
 
-    const query = `
-      UPDATE users
-      SET username=?, password_hash = ?, pfp_url = ?
-      WHERE id=?
-      RETURNING *
-    `;
-    const { rows } = await knex.raw(query, [
-      username || previousData.username,
-
-
-      password ? await authUtils.hashPassword(password) : previousData.password,
-      pfp_url || previousData.pfpUrl,
-      id
-    ]);
+    const passwordHash = password ? await authUtils.hashPassword(password) : null;
+    const query = passwordHash
+      ? `
+        UPDATE users
+        SET username = ?, password_hash = ?, pfp_url = ?
+        WHERE id = ?
+        RETURNING *
+      `
+      : `
+        UPDATE users
+        SET username = ?, pfp_url = ?
+        WHERE id = ?
+        RETURNING *
+      `;
+    const values = passwordHash
+      ? [username || previousData.username, passwordHash, pfp_url || previousData.pfpUrl, id]
+      : [username || previousData.username, pfp_url || previousData.pfpUrl, id];
+    const { rows } = await knex.raw(query, values);
     const updatedUser = rows[0];
     return updatedUser ? new User(updatedUser) : null;
   }

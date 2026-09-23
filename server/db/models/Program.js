@@ -52,11 +52,12 @@ class Program {
     borough = "",
     organization_id = "",
     img_url = "",
-    color = ""
+    color = "",
+    rating = null
   ) {
     const query = `
-    INSERT INTO programs (name, bio, website_url, borough, organization_id, img_url, color)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO programs (name, bio, website_url, borough, organization_id, img_url, color, rating)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     RETURNING *
     `;
     try {
@@ -67,12 +68,12 @@ class Program {
         borough,
         organization_id,
         img_url,
-        color
+        color,
+        rating,
       ]);
       const program = rows[0];
       return program ? new Program(program) : null;
     } catch (e) {
-      console.log(new Error(e));
       return new Error(e);
     }
   }
@@ -120,7 +121,7 @@ class Program {
 
   static async getRecommends(id) {
     const inTable = await knex.raw("SELECT * FROM programs WHERE id = ?", [id]);
-    if (!inTable) return null;
+    if (!inTable.rows.length) return null;
 
     const query = "SELECT * FROM recommends WHERE program_id = ?";
     const { rows } = await knex.raw(query, [id]);
@@ -129,7 +130,7 @@ class Program {
 
   static async getComments(id) {
     const inTable = await knex.raw("SELECT * FROM programs WHERE id = ?", [id]);
-    if (!inTable) return null;
+    if (!inTable.rows.length) return null;
 
     const query = `
     SELECT * FROM comments 

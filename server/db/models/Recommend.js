@@ -34,7 +34,6 @@ class Recommend {
   }
 
   static async findSpecific(user_id, program_id) {
-    console.log(user_id,program_id)
     const query = `SELECT * FROM recommends WHERE program_id = ? AND user_id = ?`;
     const { rows } = await knex.raw(query, [program_id, user_id]);
     const recommend = rows[0];
@@ -58,14 +57,12 @@ class Recommend {
     WHERE id = ?
     RETURNING *`;
     const { rows } = await knex.raw(query, [newRec, id]);
-    console.log("REC UPDATRE", newRec, id);
-    console.log(rows)
     const recommend = rows[0];
     return recommend ? new Recommend(recommend) : null;
   }
 
   static deleteAll() {
-    knex('recommends').del();
+    return knex('recommends').del();
   }
 
   static async deleteRecommend(id) {

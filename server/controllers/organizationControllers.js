@@ -31,9 +31,8 @@ exports.showOrganization = async (req, res) => {
 exports.updateOrganization = async (req, res) => {
   const { username, password, pfp_url } = req.body;
   const { id } = req.params;
-  console.log(id, req.session)
   
-  if (!isAuthorized(id, req.session)) return res.sendStatus(403);
+  if (Number(id) !== Number(req.session.organizationId)) return res.sendStatus(403);
 
   const updatedOrganization = await Organization.update(id, username, password, pfp_url);
   if (updatedOrganization === null) return res.sendStatus(404);

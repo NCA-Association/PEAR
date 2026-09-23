@@ -61,18 +61,26 @@ class Organization {
 
   static async update(id, username, password, pfp_url) {
     const oldData = await Organization.findById(id);
-    const query = `
-    UPDATE organizations
-    SET username = ?, password_hash = ?, pfp_url = ?
-    WHERE id = ?
-    RETURNING *
-    `;
-    const { rows } = await knex.raw(query, [
-      username || oldData.username,
-      await authUtils.hashPassword(password),
-      pfp_url || oldData.pfpUrl,
-      id,
-    ]);
+    if (!oldData) return null;
+
+    const passwordHash = password ? await authUtils.hashPassword(password) : null;
+    const query = passwordHash
+      ? `
+        UPDATE organizations
+        SET username = ?, password_hash = ?, pfp_url = ?
+        WHERE id = ?
+        RETURNING *
+      `
+      : `
+        UPDATE organizations
+        SET username = ?, pfp_url = ?
+        WHERE id = ?
+        RETURNING *
+      `;
+    const values = passwordHash
+      ? [username || oldData.username, passwordHash, pfp_url || oldData.pfpUrl, id]
+      : [username || oldData.username, pfp_url || oldData.pfpUrl, id];
+    const { rows } = await knex.raw(query, values);
     const updatedOrg = rows[0];
     return updatedOrg ? new Organization(updatedOrg) : null;
   }
@@ -87,15 +95,15 @@ class Organization {
     WHERE organization_id = ?
     RETURNING *
     `;
-    const { programRows } = await knex.raw(programsQuery, [id]);
+    const { rows: programRows } = await knex.raw(programsQuery, [id]);
 
-    programRows.forEach(async (program) => {
+    await Promise.all(programRows.map(async (program) => {
       const commentQuery = `
       DELETE FROM comments
       WHERE program_id = ?
       `;
       await knex.raw(commentQuery, [program.id]);
-    });
+    }));
 
     const organizationQuery = `
     DELETE FROM organizations

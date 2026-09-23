@@ -4,13 +4,13 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "build": "cd frontend && npm i && npm run build && cd ../server && npm i && npm run migrate && npm run seed",
+    "build": "cd frontend && npm i && npm run build && cd ../server && npm i && npm run migrate",
     "build:frontend": "cd frontend && npm i && npm run build",
     "start": "cd server && npm start",
     "dev": "cd server && npm run dev",
     "dev:frontend": "cd frontend && npm run dev",
     "connect": "psql -U postgres -d kidcompass",
-    "lint": "eslint . --fix"
+    "lint": "cd server && npm run lint && cd ../frontend && npm run lint"
   },
   "keywords": [],
   "author": "",

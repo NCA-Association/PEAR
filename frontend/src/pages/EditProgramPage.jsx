@@ -28,7 +28,6 @@ export default function EditProgramPage() {
     const fetchProgram = async () => {
       const [fetchedProgram] = await getProgramById(id);
       if (fetchedProgram === null) navigate('/opportunities')
-        console.log(fetchedProgram);
       setProgram(fetchedProgram);
       setName(fetchedProgram.name);
       setPicture(fetchedProgram.imgUrl);

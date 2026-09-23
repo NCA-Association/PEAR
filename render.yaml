@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: pear
+    env: node
+    buildCommand: npm run build:frontend && cd server && npm install && npm run migrate
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true

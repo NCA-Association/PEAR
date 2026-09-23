@@ -15,7 +15,7 @@ export const getAllRecommendsOfProgram = async (id) => {
 };
 
 export const getAllRecommendsOfUser = async (id) => {
-  const recommends = await fetchHandler(`/api/users/programs/${id}`);
+  const recommends = await fetchHandler(`/api/users/recommends/${id}`);
   return recommends || [];
 }
 

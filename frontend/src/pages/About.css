@@ -6,6 +6,11 @@ img {
   box-shadow: rgba(166, 100, 129, 0.2) 0px 8px 24px;
   border-radius: 10px;
 }
+
+.abt-box {
+  background-color: transparent;
+}
+
 #about-us-header {
   margin: 0;
 }

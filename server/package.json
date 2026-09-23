@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm i && npm run migrate:rollback && npm run migrate && npm run seed",
+    "build": "npm i && npm run migrate",
     "start": "node ./index.js",
     "dev": "nodemon ./index.js",
     "connect": "psql -U postgres -d kidcompass",
@@ -14,7 +14,7 @@
     "remake": "knex migrate:rollback && knex migrate:latest && knex seed:run",
     "seed": "knex seed:run",
     "seed:make": "knex seed:make",
-    "lint": "eslint . --fix"
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
@@ -39,5 +39,8 @@
     "eslint-plugin-react-refresh": "^0.3.4",
     "nodemon": "^3.1.0",
     "sass": "^1.77.2"
+  },
+  "allowScripts": {
+    "bcrypt@5.1.0": true
   }
 }

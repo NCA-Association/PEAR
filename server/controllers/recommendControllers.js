@@ -2,7 +2,10 @@ const Recommend = require("../db/models/Recommend");
 const User = require('../db/models/User');
 
 exports.createRecommend = async (req, res) => {
-  const { program_id, user_id, recommend } = req.body;
+  const { program_id, recommend } = req.body;
+  const user_id = req.session.userId;
+
+  if (!user_id || !program_id) return res.sendStatus(400);
 
   const isAvailable = await Recommend.findSpecific(user_id, program_id);
   if (isAvailable !== null) {
@@ -33,6 +36,10 @@ exports.showRecommend = async (req, res) => {
 exports.updateRecommend = async (req, res) => {
   const { recommend } = req.body;
   const { id } = req.params;
+  const existingRecommend = await Recommend.findById(id);
+  if (!existingRecommend) return res.sendStatus(404);
+  if (Number(existingRecommend.user_id) !== Number(req.session.userId)) return res.sendStatus(403);
+
   const updated = await Recommend.update(recommend, id);
   res.send(updated);
 };
