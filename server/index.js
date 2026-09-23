@@ -16,7 +16,7 @@ const app = express();
 
 // middleware
 app.use(handleCookieSessions); // adds a session property to each request representing the cookie
-app.use(logRoutes); // print information about each incoming request
+if (process.env.NODE_ENV !== 'production') app.use(logRoutes); // print information about each incoming request
 app.use(express.json()); // parse incoming request bodies as JSON
 app.use(express.static(path.join(__dirname, '../frontend/dist'))); // Serve static assets from the dist folder of the frontend
 
@@ -41,5 +41,5 @@ app.get('*', (req, res) => {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
+  if (process.env.NODE_ENV !== 'production') console.log(`Server running at http://localhost:${port}/`);
 });

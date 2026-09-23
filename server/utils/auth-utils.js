@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
  */
 const hashPassword = async (password, saltRounds = 8) => bcrypt
   .hash(password, saltRounds)
-  .catch((err) => console.log(err.message));
+  .catch(() => undefined);
 
 /** Check if a given password matches a given hash, returns a bool, or undefined if error
  * @param {string} password Plaintext password
@@ -16,7 +16,7 @@ const hashPassword = async (password, saltRounds = 8) => bcrypt
  */
 const isValidPassword = async (password, hash) => bcrypt
   .compare(password, hash)
-  .catch((err) => console.error(err.message));
+  .catch(() => undefined);
 
 const isAuthorized = (userId, session) => {
   // console.log(userId,session.organizationId, session.userId)

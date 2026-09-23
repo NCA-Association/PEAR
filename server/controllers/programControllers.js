@@ -32,8 +32,7 @@ exports.createProgram = async (req, res) => {
     );
     res.send(program)
   } catch (e) {
-    console.log(e);
-    res.send(e);
+    res.status(500).json({ error: 'Failed to create program' });
   }
 };
 

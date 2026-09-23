@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm i && npm run migrate:rollback && npm run migrate && npm run seed",
+    "build": "npm i && npm run migrate",
     "start": "node ./index.js",
     "dev": "nodemon ./index.js",
     "connect": "psql -U postgres -d kidcompass",

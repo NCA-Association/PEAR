@@ -74,7 +74,6 @@ class Program {
       const program = rows[0];
       return program ? new Program(program) : null;
     } catch (e) {
-      console.log(new Error(e));
       return new Error(e);
     }
   }
