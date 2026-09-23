@@ -23,9 +23,9 @@ For the latest version, please visit the **pearr** repository: [https://github.c
 
 This project was a collaborative effort by:
 
-- [**Nico Aroca**](https://github.com/tailsmonster) - Project Owner
-- [**Cris Martinez**](https://github.com/CrisM05) - Backend Developer
-- [**Allan Ramirez**](https://github.com/allancool9) - Scrum Master
+- [**Nico Aroca**](https://github.com/tailsmonster) - Developer - Project Owner
+- [**Allan Ramirez**](https://github.com/allancool9) - Developer - Scrum Master
+- [**Cris Martinez**](https://github.com/CrisM05) - Developer (Backend Specialist)
 
 ---
 
