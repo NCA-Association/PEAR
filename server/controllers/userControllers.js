@@ -39,7 +39,7 @@ exports.updateUser = async (req, res) => {
   // Not only do users need to be logged in to update a user, they
   // need to be authorized to perform this action for this particular
   // user (users should only be able to change their own profiles)
-  if (!isAuthorized(id, req.session)) return res.sendStatus(403);
+  if (Number(id) !== Number(req.session.userId)) return res.sendStatus(403);
 
   const updatedUser = await User.update(id, username, password, pfp_url);
   if (!updatedUser) return res.sendStatus(404);
