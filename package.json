@@ -10,7 +10,7 @@
     "dev": "cd server && npm run dev",
     "dev:frontend": "cd frontend && npm run dev",
     "connect": "psql -U postgres -d kidcompass",
-    "lint": "eslint . --fix"
+    "lint": "cd server && npm run lint && cd ../frontend && npm run lint"
   },
   "keywords": [],
   "author": "",

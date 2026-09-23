@@ -14,7 +14,7 @@
     "remake": "knex migrate:rollback && knex migrate:latest && knex seed:run",
     "seed": "knex seed:run",
     "seed:make": "knex seed:make",
-    "lint": "eslint . --fix"
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",

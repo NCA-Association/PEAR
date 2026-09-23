@@ -9,7 +9,7 @@ exports.up = (knex) => knex.schema.createTable("programs", (table) => {
   table.text("website_url").notNullable().unique();
   table.string("borough").notNullable();
   table.integer("organization_id");
-  table.foreign('organization_id').references('id').inTable('organizations');
+  table.foreign('organization_id').references('id').inTable('organizations').onDelete('CASCADE');
   table.text("img_url").notNullable();
   table.string("color").notNullable();
   table.double("rating");
