@@ -32,12 +32,10 @@ export default function HomePage() {
   useEffect(() => {
     const getPrograms = async () => {
       const data = await getAllPrograms();
-      console.log(data);
-      if (data) setPrograms([data[data.length-1], data[data.length-2], data[data.length-3]]);
+      if (data) setPrograms(data.slice(-3).reverse());
       if (error) setError(error);
     };
     getPrograms();
-    console.log(programs);
   }, []);
 
   const headliner = "Youth Resources for Children in NYC ";

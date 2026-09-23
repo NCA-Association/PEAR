@@ -31,7 +31,7 @@ export default function CurrentUserContextProvider({ children }) {
   };
   
   useEffect(() => {
-  getAccount();
+    getAccount();
   },[])
 
   return (

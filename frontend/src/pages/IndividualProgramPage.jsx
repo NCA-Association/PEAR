@@ -82,6 +82,7 @@ const IndividualProgramPage = () => {
                 <a
                   className="normal-font"
                   target="_blank"
+                  rel="noreferrer"
                   href={programInfo.websiteUrl}
                 >
                   {programInfo.websiteUrl}

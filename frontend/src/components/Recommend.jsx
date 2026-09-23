@@ -22,8 +22,8 @@ const Recommend = ({ programId, userId, update }) => {
     if (org) return setIsOrganization(true);
     const [user] = await getUser(id);
     setCurrentUser(user);
-    userId = userId || user.id;
-    const [recommendation, error] = await doesRecommendExist(programId, userId);
+    const activeUserId = userId || user.id;
+    const [recommendation, error] = await doesRecommendExist(programId, activeUserId);
     setRecommend(recommendation);
     if (recommendation) {
       setCheck(recommendation.recommend);
@@ -35,11 +35,13 @@ const Recommend = ({ programId, userId, update }) => {
   const handleChange = async (e) => {
     const recommend = e.target.value === "Yes";
     if (isOrganization) navigate('/opportunities');
-    const [recommendation, error] = await doesRecommendExist(programId, userId);
+    const activeUserId = userId || currentUser?.id;
+    if (!activeUserId) return;
+    const [recommendation, error] = await doesRecommendExist(programId, activeUserId);
     setRecommend(recommendation);
 
     if (!recommendation) {
-      const [updated] = await createRecommend({ programId, userId, recommend });
+      const [updated] = await createRecommend({ programId, userId: activeUserId, recommend });
       setRecommend(updated);
       // setCheck(updated.recommend);
 
