@@ -8,7 +8,7 @@ import "./Login.css";
 export default function LoginPage() {
   const navigate = useNavigate();
   const [errorText, setErrorText] = useState("");
-  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const { currentUser, setCurrentUser, setIsOrganization: setContextIsOrganization, isAuthLoading } = useContext(CurrentUserContext);
   const [isOrganization, setIsOrganization] = useState(false);
 
   const handleSubmit = async (event) => {
@@ -20,9 +20,11 @@ export default function LoginPage() {
       : await logUserIn(Object.fromEntries(formData));
     if (error) return setErrorText(error.message);
     setCurrentUser(user);
+    setContextIsOrganization(isOrganization);
     navigate("/opportunities");
   };
 
+  if (isAuthLoading) return null;
   if (currentUser !== null) return <Navigate to="/" />;
 
   return (

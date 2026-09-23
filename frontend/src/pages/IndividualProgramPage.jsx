@@ -38,6 +38,7 @@ const IndividualProgramPage = () => {
       const [commentData, error] = await getAllProgramComments(id);
       if (commentData) setComments(commentData);
 
+      if (!program) return;
       const recommends = await getAllRecommendsOfProgram(program.id);
       setAllRecommends(recommends);
       if (allRecommends.length !== 0) {
