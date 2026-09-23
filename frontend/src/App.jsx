@@ -25,6 +25,7 @@ import AboutPage from "./pages/About.jsx";
 //Component Imports
 import UserContext from "./contexts/current-user-context";
 import SiteHeadingAndNav from "./components/SiteHeadingAndNav";
+import Footer from "./components/Footer.jsx";
 import { getOrganization } from "./adapters/organization-adapter.js";
 import { getUser } from "./adapters/user-adapter.js";
 import MakeComment from "./components/MakeComment.jsx";
@@ -88,6 +89,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
+      <Footer />
     </>
   );
 }

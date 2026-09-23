@@ -1,4 +1,3 @@
-import React from "react";
 import "./Footer.css";
 
 const Footer = () => {
@@ -7,9 +6,8 @@ const Footer = () => {
       <a href="https://github.com/NCA-Association/PEAR">Github Repo</a>
       <div id="footer-column">
         <p>By: Nico Aroca - Allan Ramirez - Cris Martinez</p>
-        <p>@@NCA_Association - 2024</p>
+        <p>@NCA_Association - 2024</p>
       </div>
-      <a href="https://dog.ceo/dog-api/">Dog CEO API</a>
     </footer>
   );
 };
